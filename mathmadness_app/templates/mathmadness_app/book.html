@@ -1,0 +1,41 @@
+{% extends 'mathmadness_app/base.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-center text-center">
+    <div class="p-3 mb-2 bg-dark text-light rounded" >
+        <h1>Reserved books</h1>
+            <ul class="list-group" >
+                {% for i in reserved_books %}
+                <li class="list-group-item" style="background-color : #2a2e33;"><h3>
+                    <a href="{% url 'mathmadness_app:open_book' i.id %} ">{{ i }}</a>
+                    <a href="{% url 'mathmadness_app:return' i.id %}">Return book</a>
+                </h3></li>
+                {% empty %}
+                    <li class="list-group-item" style="background-color : #2a2e33;"><h3>You have not reserved any books yet.</h3></li>
+                {% endfor %} 
+            </ul>
+
+        <h1>Books</h1>
+            <ul class="list-group">
+                {% for i in book %}
+                <!--Pointless list-->
+                <li class="list-group-item" style="background-color : #2a2e33;"><h3>
+                    {{ i }}
+                    {% if i.reserved == False %}
+                        <a href="{% url 'mathmadness_app:reserve' i.id %}">Reserve</a>
+                    {% endif %}
+                </h3></li>
+                {% empty %}
+                    <li class="list-group-item"><h3>No books have been added yet.</h3></li>
+                {% endfor %}
+            </ul>
+            <!---- Checks if the user is superuser -->
+            {% if user.is_superuser %}
+            <h2>Admin Zone</h2>
+            <h3>Create a new book</h3>
+            <a href="{% url 'mathmadness_app:new_book' %}">Add a new book</a>
+            {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

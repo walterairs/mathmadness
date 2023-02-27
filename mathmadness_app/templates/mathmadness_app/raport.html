@@ -1,0 +1,18 @@
+{% extends 'mathmadness_app/base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center text-center">
+        <div class="p-3 mb-2 bg-dark text-light rounded">
+            <h1>Here is your raport {{ user }}</h1>
+            {% for category in raport %}
+                <h2>Category name: {{ category.category }}</h2>
+                <h4>Category difficulty: {{ category.difficulty }}</h4>
+                <h4>Total questions: {{ category.total_questions }}</h4>
+                <h4>Correct answers: {{ category.correct_answers }}</h4>
+                <h4>Wrong answers: {{ category.wrong_answers }}</h2>
+            {% empty %}
+                <li class="list-group-item">No answers yet!</li>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

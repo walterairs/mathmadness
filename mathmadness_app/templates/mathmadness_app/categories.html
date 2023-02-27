@@ -1,0 +1,29 @@
+{% extends "mathmadness_app/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center text-center">
+    <div class="p-3 mb-2 bg-dark text-light rounded">
+            <h1>Math Madness</h1>
+            <p>Math Madness is a game where you can test your math skills.</p>
+            <h2>Categories</h2>
+            <ul class="list-group">
+                {% for category in categories %}
+                    <li class="list-group-item" style="background-color : #2a2e33;">
+                        <a href="{% url 'mathmadness_app:category' category.id %}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+                                <!---- Checks if the user is superuser -->
+                                {% if user.is_superuser %}
+                                <div class="p-3 mb-2 bg-dark text-light rounded">    
+                                    <h2>Admin Zone</h2>
+                                    <h3>Create a new category</h3>
+                                    <a href="{% url 'mathmadness_app:new_category' %}">Add a new category</a>
+                                </div>
+                                {% endif %}
+            </ul>
+        </div>
+        <br />
+    </div>
+
+
+{% endblock content %}

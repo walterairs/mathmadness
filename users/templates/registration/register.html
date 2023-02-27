@@ -1,0 +1,17 @@
+{% extends "mathmadness_app/base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center">
+    <div class="p-3 mb-2 bg-dark text-light rounded">
+        <form method="post" action="{% url 'users:register' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <div class="text-center">
+                <button name="submit" class="btn btn-primary">Register</button>
+            </div>
+            <input type="hidden" name="next" value="{% url 'mathmadness_app:index' %}" />
+        </form>
+    </div>
+</div>
+ 
+{% endblock content %}

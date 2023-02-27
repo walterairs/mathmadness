@@ -1,0 +1,26 @@
+{% extends "mathmadness_app/base.html" %}
+{% include "mathmadness_app/bg.html" %}
+<!--    <div class="d-flex justify-content-center text-center">
+        <div class="p-3 mb-2 bg-dark text-dark">-->
+{% block content %}
+    <div class="d-flex justify-content-center text-center">
+        <div class="p-3 mb-2 bg-dark text-light rounded">
+            <h1>Math Madness</h1>
+            <p>Math Madness is a game where you can test your math skills.</p>
+            {% if user.is_authenticated %}
+                <button type="button" class="btn btn-primary">
+                    <a class="text-decoration-none text-light" href="{% url 'mathmadness_app:categories' %}">Play</a>
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-primary">
+                    <a class="text-decoration-none text-light" href="{% url 'users:register' %}">Register</a>
+                </button>
+                <a> or </a>
+                <button type="button" class="btn btn-primary">
+                    <a class="text-decoration-none text-light" href="{% url 'users:login' %}">Login</a>
+                </button>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
+

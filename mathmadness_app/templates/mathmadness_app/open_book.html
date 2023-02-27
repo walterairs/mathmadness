@@ -1,0 +1,25 @@
+{% extends "mathmadness_app/base.html" %}
+{% block content %}
+{% block page_header %}
+{% endblock page_header %}
+<div class="d-flex justify-content-center text-center">
+    <div class="p-3 mb-2 bg-dark text-light rounded">
+        <h1>{{ book }}</h1>
+        <h6>Category: {{book.category}}</h6>
+        <h6>Authors: {{book.authors}}</h6>
+        <h6>Year published: {{book.year_published}}</h6>
+        <p>{{book.content}}</p>
+
+        <button name="submit" class="btn btn-primary"><a href="{% url 'mathmadness_app:books' %}" class="text-light">Back</a></button>
+
+        <!---- Checks if the user is superuser -->
+        {% if user.is_superuser %}
+        <h2>Admin Zone</h2>
+        <h3>Edit the content of this book</h3>
+        <p><a href="{% url 'mathmadness_app:edit_book' book.id %}">Edit book</a></p>
+
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

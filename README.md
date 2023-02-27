@@ -1,5 +1,5 @@
 # Math-Madness
 
 
-to run:  ```python manage.py runserve```
+to run:  ```python manage.py runserver```
 
